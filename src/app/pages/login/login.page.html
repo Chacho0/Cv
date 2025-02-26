@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating">Correo Electrónico</ion-label>
+    <ion-input [(ngModel)]="email" type="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="login()">Iniciar sesión </ion-button>
+  
+  <!-- Botón para registrar -->
+  <ion-button expand="full" color="secondary" (click)="goToRegister()">Registrar</ion-button>
+
+  <!-- Botón para recuperar contraseña -->
+  <ion-button expand="full" fill="clear" (click)="goToRecoverPassword()">¿Olvidaste tu contraseña?</ion-button>
+  <!-- Mostrar errores -->
+  <ion-text *ngIf="errorMessage" color="danger">
+    <p>{{ errorMessage }}</p>
+  </ion-text>
+</ion-content>

@@ -1,0 +1,77 @@
+/* General */
+ion-card {
+    margin-bottom: 20px;
+  }
+  
+  ion-card-header {
+    background-color: #f2f2f2;
+  }
+  
+  ion-card-title {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  /* Personal Info Section */
+  ion-card-content ion-item {
+    margin-bottom: 15px;
+  }
+  
+  /* Imagen circular */
+  ion-avatar {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  
+  ion-avatar img {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  ion-item input[type="file"] {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  ion-item img {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  /* Agregar secciones (Estudios, Experiencia, Habilidades) */
+  ion-card-content ion-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  ion-item ion-label {
+    flex: 1;
+  }
+  
+  ion-item ion-button {
+    margin-left: 10px;
+  }
+  
+  /* Botones */
+  ion-button {
+    --background: #3880ff;
+    --color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  /* Corrección de la edición de los campos */
+  ion-input:focus {
+    background-color: #e0f7fa;
+  }
+  
+  /* Diseño general */
+  ion-content {
+    padding: 10px;
+  }
+  

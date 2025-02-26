@@ -1,3 +1,31 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- Menú lateral -->
+  <ion-menu contentId="main-content" *ngIf="!isLoginPage">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <div *ngIf="user">
+        <ion-avatar>
+          <img [src]="user.photoURL" *ngIf="user.photoURL" />
+          <ion-label>{{ user.displayName }}</ion-label>
+        </ion-avatar>
+      </div>
+
+      <!-- Enlaces del menú -->
+      <ion-item routerLink="/portal" ion-menu-toggle>Inicio</ion-item>
+      <ion-item routerLink="/crear-curriculum" ion-menu-toggle>Crear Curriculum</ion-item>
+      <ion-item routerLink="/ver-curriculum" ion-menu-toggle>Ver Curriculum</ion-item>
+      <ion-item routerLink="/perfil" ion-menu-toggle>Perfil</ion-item>
+      <ion-item (click)="logout()">Cerrar sesión</ion-item>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Contenido principal de la página -->
+  <div class="ion-page" id="main-content">
+    <!-- Aquí va el contenido que se cambia de acuerdo con las rutas -->
+    <ion-router-outlet></ion-router-outlet>
+  </div>
 </ion-app>

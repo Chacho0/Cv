@@ -1,0 +1,167 @@
+<ion-header>
+  <ion-toolbar>
+     <!-- Botón del Menú en la izquierda -->
+     <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear Curriculum</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-accordion-group>
+    <!-- Imagen circular -->
+    <div style="text-align: center; margin-bottom: 20px;">
+      <ion-avatar style="width: 120px; height: 120px; border-radius: 50%; position: relative;">
+        <!-- Imagen visible -->
+        <img 
+          *ngIf="curriculum.imagen" 
+          [src]="curriculum.imagen" 
+          alt="Imagen de perfil" 
+          style="cursor: pointer;" 
+          (click)="triggerFileInput()" 
+        />
+        <img 
+          *ngIf="!curriculum.imagen" 
+          src="assets/default-perfil.jpg" 
+          alt="Imagen por defecto" 
+          style="cursor: pointer;" 
+          (click)="triggerFileInput()" 
+        />
+        <!-- Input de archivo oculto -->
+        <input 
+          type="file" 
+          accept="image/*" 
+          (change)="onFileSelected($event)" 
+          style="display: none;" 
+          #fileInput 
+        />
+      </ion-avatar>
+    </div>
+    
+
+    <!-- Datos Personales -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Datos Personales</ion-label>
+      </ion-item>
+      <div slot="content">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="curriculum.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input [(ngModel)]="curriculum.apellido"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input [(ngModel)]="curriculum.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input [(ngModel)]="curriculum.telefono"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Ciudad</ion-label>
+          <ion-input [(ngModel)]="curriculum.ciudad"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Estado Civil</ion-label>
+          <ion-input [(ngModel)]="curriculum.estadoCivil"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Introducción</ion-label>
+          <ion-textarea [(ngModel)]="curriculum.introduccion"></ion-textarea>
+        </ion-item>
+      </div>
+    </ion-accordion>
+
+    <!-- Secciones dinámicas -->
+    <!-- Educación -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Educación</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <ion-item *ngFor="let edu of curriculum.educacion; let i = index; trackBy: trackByIndex">
+          <ion-input [(ngModel)]="curriculum.educacion[i]" placeholder="Institución y título"></ion-input>
+          <ion-button (click)="removeItem('educacion', i)" color="danger">Eliminar</ion-button>
+        </ion-item>
+        <ion-button expand="block" (click)="addItem('educacion')">Agregar</ion-button>
+      </ion-list>
+    </ion-accordion>
+<!-- Cursos -->
+<ion-accordion>
+  <ion-item slot="header">
+    <ion-label>Cursos</ion-label>
+  </ion-item>
+  <ion-list slot="content">
+    <ion-item *ngFor="let curso of curriculum.cursos; let i = index; trackBy: trackByIndex">
+      <ion-input [(ngModel)]="curriculum.cursos[i]" placeholder="Nombre del curso"></ion-input>
+      <ion-button (click)="removeItem('cursos', i)" color="danger">Eliminar</ion-button>
+    </ion-item>
+    <ion-button expand="block" (click)="addItem('cursos')">Agregar</ion-button>
+  </ion-list>
+</ion-accordion>
+
+    <!-- Experiencia Laboral -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Experiencia Laboral</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <ion-item *ngFor="let exp of curriculum.experiencia; let i = index; trackBy: trackByIndex">
+          <ion-input [(ngModel)]="curriculum.experiencia[i]" placeholder="Empresa y puesto"></ion-input>
+          <ion-button (click)="removeItem('experiencia', i)" color="danger">Eliminar</ion-button>
+        </ion-item>
+        <ion-button expand="block" (click)="addItem('experiencia')">Agregar</ion-button>
+      </ion-list>
+    </ion-accordion>
+
+    <!-- Habilidades Técnicas -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Habilidades Técnicas</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <ion-item *ngFor="let skill of curriculum.habilidades; let i = index; trackBy: trackByIndex">
+          <ion-input [(ngModel)]="curriculum.habilidades[i]" placeholder="Habilidad"></ion-input>
+          <ion-button (click)="removeItem('habilidades', i)" color="danger">Eliminar</ion-button>
+        </ion-item>
+        <ion-button expand="block" (click)="addItem('habilidades')">Agregar</ion-button>
+      </ion-list>
+    </ion-accordion>
+
+    <!-- Idiomas -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Idiomas</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <ion-item *ngFor="let lang of curriculum.idiomas; let i = index; trackBy: trackByIndex">
+          <ion-input [(ngModel)]="curriculum.idiomas[i]" placeholder="Idioma y nivel"></ion-input>
+          <ion-button (click)="removeItem('idiomas', i)" color="danger">Eliminar</ion-button>
+        </ion-item>
+        <ion-button expand="block" (click)="addItem('idiomas')">Agregar</ion-button>
+      </ion-list>
+    </ion-accordion>
+
+    <!-- Referencias -->
+    <ion-accordion>
+      <ion-item slot="header">
+        <ion-label>Referencias</ion-label>
+      </ion-item>
+      <ion-list slot="content">
+        <ion-item *ngFor="let ref of curriculum.referencias; let i = index; trackBy: trackByIndex">
+          <ion-input [(ngModel)]="curriculum.referencias[i]" placeholder="Nombre y contacto"></ion-input>
+          <ion-button (click)="removeItem('referencias', i)" color="danger">Eliminar</ion-button>
+        </ion-item>
+        <ion-button expand="block" (click)="addItem('referencias')">Agregar</ion-button>
+      </ion-list>
+    </ion-accordion>
+
+    <!-- Guardar -->
+    <ion-button expand="full" (click)="submitCurriculum()">Guardar Currículum</ion-button>
+  </ion-accordion-group>
+</ion-content>

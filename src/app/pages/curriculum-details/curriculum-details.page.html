@@ -1,0 +1,68 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+     <!-- Botón del Menú en la izquierda -->
+     <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Detalles del Curriculum</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="curriculum">
+    <ion-card-header>
+      <ion-card-title>{{ curriculum.nombre }} {{ curriculum.apellido }}</ion-card-title>
+      <ion-img *ngIf="curriculum.imagen" [src]="curriculum.imagen" alt="Imagen del curriculum"></ion-img>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ curriculum.email }}</p>
+      <p><strong>Teléfono:</strong> {{ curriculum.telefono }}</p>
+      <p><strong>Ciudad:</strong> {{ curriculum.ciudad }}</p>
+      <p><strong>Estado Civil:</strong> {{ curriculum.estadoCivil }}</p>
+      <p><strong>Introducción:</strong> {{ curriculum.introduccion }}</p>
+
+      <ion-card-title><strong>Educación:</strong></ion-card-title>
+      <ion-list>
+        <ion-item *ngFor="let edu of curriculum.educacion">
+          <ion-label>{{ edu }}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-card-title><strong>Cursos:</strong></ion-card-title>
+<ion-list>
+  <ion-item *ngFor="let curso of curriculum.cursos">
+    <ion-label>{{ curso }}</ion-label>
+  </ion-item>
+</ion-list>
+      <ion-card-title><strong>Experiencia:</strong></ion-card-title>
+      <ion-list>
+        <ion-item *ngFor="let exp of curriculum.experiencia">
+          <ion-label>{{ exp }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-card-title><strong>Habilidades:</strong></ion-card-title>
+      <ion-list>
+        <ion-item *ngFor="let hab of curriculum.habilidades">
+          <ion-label>{{ hab }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-card-title><strong>Idiomas:</strong></ion-card-title>
+      <ion-list>
+        <ion-item *ngFor="let idioma of curriculum.idiomas">
+          <ion-label>{{ idioma }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-card-title><strong>Referencias:</strong></ion-card-title>
+      <ion-list>
+        <ion-item *ngFor="let ref of curriculum.referencias">
+          <ion-label>{{ ref }}</ion-label>
+        </ion-item>
+      </ion-list>
+</ion-card-content>
+</ion-card>
+
+  <ion-button color="primary" (click)="goBack()">Regresar</ion-button>
+</ion-content>
+
